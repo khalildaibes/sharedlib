@@ -1,4 +1,4 @@
 def khaliltest(){
-  echo ${workspace}
+  echo "${workspace}"
 }
 
