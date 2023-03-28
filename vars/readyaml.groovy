@@ -1,4 +1,4 @@
-def readyaml(){
+def khaliltest(){
 data = readYaml file: "datacenters.yml"
 scan_path = data[scan_path]
 scan_path.each { e ->
