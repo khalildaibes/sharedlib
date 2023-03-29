@@ -1,6 +1,6 @@
 def get_data_centers(jobname){
   def configVal = readYaml file: "datacenters.yml"
-  echo configVal['datacenters']
+  echo configVal['datacenters'].toString()
   echo jobname
   if (jobname in configVal['datacenters']){
     def datacenters = configVal['datacenters']["${jobname}"]["data-centers"]
