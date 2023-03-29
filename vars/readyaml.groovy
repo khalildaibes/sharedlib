@@ -1,4 +1,3 @@
-import groovy.yaml.YamlSlurper
 def khaliltest(){
   def configVal = readYaml file: "full path of the yml file"
   echo "configVal: " + configVal
