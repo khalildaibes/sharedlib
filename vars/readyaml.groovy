@@ -24,7 +24,7 @@ return db_type
 def cops_api(authToken,customer) {
   http.request(POST) {
       uri.path = 'http://cops.onbmc.com/cops/api.php'
-      body = [jsonrpc= "2.0",method= "getprojectparams", params= [project= "refash1np02",filter "\/DB_TYPE\/"],id= "getprojectparams"]
+      body = [jsonrpc= "2.0",method= "getprojectparams", params= [project= "refash1np02",filter='/DB_TYPE/'],id= "getprojectparams"]
 
       requestContentType = ContentType.JSON
 
