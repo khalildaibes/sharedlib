@@ -28,6 +28,7 @@ def post = new URL("http://cops.onbmc.com/cops/api.php").openConnection();
 post.setRequestMethod("POST")
 post.setDoOutput(true)
 post.setRequestProperty("Content-Type", "application/json")
+post.setRequestProperty("APIKEY", "24df72c4a77c436a8195e0949fa3868a")
 post.getOutputStream().write(body.getBytes("UTF-8"));
 def postRC = post.getResponseCode();
 println(postRC);
