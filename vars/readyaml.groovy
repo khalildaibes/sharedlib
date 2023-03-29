@@ -30,6 +30,7 @@ post.setDoOutput(true)
 post.setRequestProperty("Content-Type", "application/json")
 post.setRequestProperty("APIKEY", "24df72c4a77c436a8195e0949fa3868a")
 post.getOutputStream().write(body.getBytes("UTF-8"));
+post.connect();
 def postRC = post.getResponseCode();
 println(postRC);
 if (postRC.equals(200)) {
