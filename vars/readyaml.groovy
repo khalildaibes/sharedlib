@@ -1,4 +1,4 @@
-
+ import groovyx.net.http.HttpBuilder
 def get_data_centers(jobname){
   def configVal = readYaml file: "datacenters.yml"
   def datacenters= [""]
@@ -16,8 +16,24 @@ def get_data_centers(jobname){
 
 def get_db_type(custoemr){
   def db_type = "Null"
-  json_result = cops_api(customer)
+  json_result = cops_api1("24df72c4a77c436a8195e0949fa3868a",customer)
 return db_type  
+}
+
+
+def cops_api1(authToken,customer) {
+def body = [
+   jsonrpc= "2.0",method= "getprojectparams", params= [project= "refash1np02",filter='/DB_TYPE/'],id= "getprojectparams"
+]
+
+def result = HttpBuilder.configure {
+    request.uri = 'http://cops.onbmc.com/cops/api.php'
+    request.headers.APIKEY = '24df72c4a77c436a8195e0949fa3868a'
+    request.contentType = 'application/json'
+    request.body = body
+}.post()
+
+echo result
 }
 
 def cops_api(authToken,customer) {
