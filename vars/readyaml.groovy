@@ -1,4 +1,3 @@
- import groovyx.net.http.HttpBuilder
 def get_data_centers(jobname){
   def configVal = readYaml file: "datacenters.yml"
   def datacenters= [""]
@@ -25,14 +24,16 @@ def cops_api1(authToken,customer) {
 def body = [
    jsonrpc= "2.0",method= "getprojectparams", params= [project= "refash1np02",filter='/DB_TYPE/'],id= "getprojectparams"
 ]
-
-def result = HttpBuilder.configure {
-    request.uri = 'http://cops.onbmc.com/cops/api.php'
-    request.headers.APIKEY = '24df72c4a77c436a8195e0949fa3868a'
-    request.contentType = 'application/json'
-    request.body = body
-}.post()
-
+def post = new URL("http://cops.onbmc.com/cops/api.php").openConnection();
+post.setRequestMethod("POST")
+post.setDoOutput(true)
+post.setRequestProperty("Content-Type", "application/json")
+post.getOutputStream().write(body.getBytes("UTF-8"));
+def postRC = post.getResponseCode();
+println(postRC);
+if (postRC.equals(200)) {
+    echo(post.getInputStream().getText());
+}
 echo result
 }
 
