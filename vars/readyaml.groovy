@@ -3,7 +3,7 @@ def get_data_centers(jobname){
   def datacenters = configVal['datacenters']["${jobname}"]["data-centers"] 
   def x = datacenters.find{ it == "${jobname}" }?.value
   if(x)
-    println "x value: ${x}"
+    ehco "x value: ${x}"
   return datacenters
 }
 
