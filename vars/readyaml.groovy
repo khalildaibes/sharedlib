@@ -1,13 +1,7 @@
 def get_data_centers(jobname){
   def configVal = readYaml file: "datacenters.yml"
-  echo configVal['datacenters'].getClass().toString()
-  HashMap h = new HashMap(configVal);
-  if (configVal.get('datacenters').get(jobname.toString())){
-  def datacenters = configVal['datacenters']["${jobname}"]["data-centers"]
-  }
-      else {
-        echo "blah blah"
-      }
+  def datacenters = [""]
+  def datacenters = configVal['datacenters']["${jobname}"]["data-centers"] or echo "Notsupported"
   return datacenters
 }
 
