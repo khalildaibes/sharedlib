@@ -13,10 +13,10 @@ def get_data_centers(jobname){
 }
 
 
-def get_db_type(custoemr){
+def get_db_type(customer){
   def db_type = "Null"
-  json_result = cops_api1("24df72c4a77c436a8195e0949fa3868a",customer)
-return db_type  
+	json_result = cops_api1("24df72c4a77c436a8195e0949fa3868a","${customer}")
+return json_result  
 }
 
 
