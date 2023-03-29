@@ -1,4 +1,3 @@
-import groovyx.net.http.ContentType
 
 def get_data_centers(jobname){
   def configVal = readYaml file: "datacenters.yml"
@@ -26,7 +25,7 @@ def cops_api(authToken,customer) {
       uri.path = 'http://cops.onbmc.com/cops/api.php'
       body = [jsonrpc= "2.0",method= "getprojectparams", params= [project= "refash1np02",filter='/DB_TYPE/'],id= "getprojectparams"]
 
-      requestContentType = ContentType.JSON
+      requestContentType = "applicaiton/json"
 
       response.success = { resp, json ->
           echo "Success! ${resp.status}"
