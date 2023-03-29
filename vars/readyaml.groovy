@@ -1,6 +1,6 @@
 def get_data_centers(jobname){
   def configVal = readYaml file: "datacenters.yml"
-  echo configVal['datacenters'].getClass()
+  echo configVal['datacenters'].getClass().toString()
   echo jobname
   if (configVal['datacenters'].containsKey('${jobname}')){
     def datacenters = configVal['datacenters']["${jobname}"]["data-centers"]
