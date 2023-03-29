@@ -8,6 +8,7 @@ def get_data_centers(jobname){
         echo 'Job dosent support datacenters'
         return [""]
     }
+  echo 'Job datacenters found'
   return datacenters
 }
 
