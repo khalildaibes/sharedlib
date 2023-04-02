@@ -34,7 +34,7 @@ def get_db_type(customer){
 return json_result  
 }
 
-
+@NonCPS
 def cops_api1(authToken,customer) {
 def body = [
    jsonrpc= "2.0",method= "getprojectparams", params= [project= "refash1np02",filter='/DB_TYPE/'],id= "getprojectparams"
