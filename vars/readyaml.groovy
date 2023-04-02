@@ -44,7 +44,7 @@ def url = "http://cops.onbmc.com/cops/api.php"
 def requestBody = [jsonrpc= "2.0",method= "getprojectparams", params= [project= "refash1np02",filter="""/DB_TYPE/"""],id= "getprojectparams"]
 
 def http = new HTTPBuilder(url)
-
+http.headers['APIKEY'] = "24df72c4a77c436a8195e0949fa3868a"
 http.request(POST, "applicaiton/json") { req ->
   body = requestBody
   response.success = { resp, json ->
