@@ -1,5 +1,5 @@
 def get_data_centers(jobname){
-  def fileContents = libraryResource('datacenters.yml')
+  def fileContents = libraryResource('/vars/datacenters.yml')
   def configVal = new File(fileContents)
   echo "File contents: ${configVal}"
   def datacenters= [""]
