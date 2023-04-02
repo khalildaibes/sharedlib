@@ -1,4 +1,4 @@
-@Grab(group='io.github.http-builder-ng', module='http-builder-ng-core', version='1.0.4')
+@Grab(group='org.codehaus.groovy.modules.http-builder', module='http-builder', version='0.7')
 import groovyx.net.http.ContentType
 import groovyx.net.http.RESTClient
 import groovy.json.JsonBuilder
