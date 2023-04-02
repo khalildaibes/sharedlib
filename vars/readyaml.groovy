@@ -1,5 +1,7 @@
 @Grab(group='io.github.http-builder-ng', module='http-builder-ng-core', version='1.0.4')
+import groovyx.net.http.ContentType
 import groovyx.net.http.RESTClient
+import groovy.json.JsonBuilder
 
 def get_data_centers(jobname){
   def filecontent = libraryResource('datacenters.yml')
