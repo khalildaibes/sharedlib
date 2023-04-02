@@ -1,5 +1,5 @@
 @Grab(group='org.codehaus.groovy.modules.http-builder', module='http-builder', version='0.7')
-@Grab('org.codehaus.groovy.modules.http-builder:'http-builder:0.7' )
+@Grab('org.codehaus.groovy.modules.http-builder:http-builder:0.7' )
 import groovyx.net.http.ContentType
 import groovyx.net.http.RESTClient
 import groovy.json.JsonBuilder
