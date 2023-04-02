@@ -2,7 +2,7 @@ def get_data_centers(jobname){
 	writeFile file:'myFile.yml', text:libraryResource("datacenters.yml")
 	 def fileContents1 = libraryResource('datacenters.yml')
 	echo "File contents: ${fileContents1}"
-  def fileContents =readYaml  libraryResource('/vars/datacenters.yml')
+  def fileContents =readYaml  libraryResource('datacenters.yml')
   def configVal = fileContents
   echo "File contents: ${configVal}"
   def datacenters= [""]
