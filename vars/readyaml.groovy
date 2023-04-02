@@ -1,7 +1,6 @@
 def get_data_centers(jobname){
 
   def configVal = readYaml libraryResource('datacenters.yml')
-  echo "File contents: ${configVal}"
   def datacenters= [""]
   try{
       datacenters = configVal['datacenters']["${jobname}"]["data-centers"]
