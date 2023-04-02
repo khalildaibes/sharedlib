@@ -45,7 +45,7 @@ def requestBody = [jsonrpc= "2.0",method= "getprojectparams", params= [project= 
 
 def http = new HTTPBuilder(url)
 
-http.request(POST, ContentType.JSON) { req ->
+http.request(POST, "applicaiton/json") { req ->
   body = requestBody
   response.success = { resp, json ->
     println "Success: ${resp.statusLine}"
