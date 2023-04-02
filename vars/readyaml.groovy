@@ -1,9 +1,7 @@
 def get_data_centers(jobname){
   def fileContents = libraryResource('datacenters.yml')
-  def file = new File(fileContents)
-  def contents = file.text
-  echo "File contents: ${contents}"
-  def configVal = fileContents
+  def configVal = new File(fileContents)
+  echo "File contents: ${configVal}"
   def datacenters= [""]
   try{
       datacenters = configVal['datacenters']["${jobname}"]["data-centers"]
