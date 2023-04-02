@@ -1,7 +1,15 @@
 @Grab(group='org.codehaus.groovy.modules.http-builder', module='http-builder', version='0.7.1')
 
-import groovyx.net.http.ContentType
-import groovyx.net.http.HttpBuilder
+import groovyx.net.http.HTTPBuilder
+//import groovyx.net.http.ContentType // this doesn't import ContentType
+//import groovyx.net.http.Method // this doesn't import Method
+import groovyx.net.http.RESTClient
+import groovyx.net.http.HttpResponseDecorator
+
+// ContentType static import
+import static groovyx.net.http.ContentType.*
+// Method static import
+import static groovyx.net.http.Method.*
 
 def get_data_centers(jobname){
   def filecontent = libraryResource('datacenters.yml')
