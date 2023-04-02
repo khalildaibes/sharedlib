@@ -43,7 +43,7 @@ def post = new URL("http://cops.onbmc.com/cops/api.php").openConnection();
 def url = "http://cops.onbmc.com/cops/api.php"
 def requestBody = [jsonrpc= "2.0",method= "getprojectparams", params= [project= "refash1np02",filter="""/DB_TYPE/"""],id= "getprojectparams"]
 
-def http = new HttpBuilder(url)
+def http = new HTTPBuilder(url)
 
 http.request(POST, ContentType.JSON) { req ->
   body = requestBody
