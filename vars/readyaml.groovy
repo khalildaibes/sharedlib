@@ -1,15 +1,4 @@
-@Grab(group='org.codehaus.groovy.modules.http-builder', module='http-builder', version='0.7.1')
-
-import groovyx.net.http.HTTPBuilder
-//import groovyx.net.http.ContentType // this doesn't import ContentType
-//import groovyx.net.http.Method // this doesn't import Method
-import groovyx.net.http.RESTClient
-import groovyx.net.http.HttpResponseDecorator
-
-// ContentType static import
-import static groovyx.net.http.ContentType.*
-// Method static import
-import static groovyx.net.http.Method.*
+@Grab(group='org.codehaus.groovy.modules.http-builder', module='http-builder-ng-core', version='1.0.4')
 
 def get_data_centers(jobname){
   def filecontent = libraryResource('datacenters.yml')
@@ -36,27 +25,24 @@ return json_result
 
 @NonCPS
 def cops_api1(authToken,customer) {
-def body = [
-   jsonrpc= "2.0",method= "getprojectparams", params= [project= "refash1np02",filter='/DB_TYPE/'],id= "getprojectparams"
-]
-def post = new URL("http://cops.onbmc.com/cops/api.php").openConnection();
-def url = "http://cops.onbmc.com/cops/api.php"
-def requestBody = [jsonrpc= "2.0",method= "getprojectparams", params= [project= "refash1np02",filter="""/DB_TYPE/"""],id= "getprojectparams"]
+def createUrl = new URL('http://cops.onbmc.com/cops/api.php')
 
-def http = new HTTPBuilder(url)
-http.headers['APIKEY'] = "24df72c4a77c436a8195e0949fa3868a"
-http.request(POST, "applicaiton/json") { req ->
-  body = requestBody
-  response.success = { resp, json ->
-    println "Success: ${resp.statusLine}"
-    println "Response body: ${json}"
-  }
-  response.failure = { resp, json ->
-    println "Failure: ${resp.statusLine}"
-    println "Response body: ${json}"
-  }
-}
-echo result
+def map = [:]
+//create JSON
+def jsonBody = """{
+    "jsonrpc": "2.0",
+    "method": "getprojectparams",
+    "params": {
+        "project": "refash1np02",
+        "filter": "/DB_TYPE/"
+    },
+    "id": "getprojectparams"
+}"""
+def client = new RESTClient(createUrl)
+client.headers['Content-Type'] = 'application/json'
+client.headers['APIKEY'] = '24df72c4a77c436a8195e0949fa3868a'
+def resp = client.post(body : jsonBody, contentType: JSON)
+return resp.data 
 }
 
 def cops_api(authToken,customer) {
