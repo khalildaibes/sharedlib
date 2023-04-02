@@ -1,3 +1,8 @@
+@Grab(group='org.codehaus.groovy.modules.http-builder', module='http-builder', version='0.7.1')
+
+import groovyx.net.http.ContentType
+import groovyx.net.http.HttpBuilder
+
 def get_data_centers(jobname){
   def filecontent = libraryResource('datacenters.yml')
   File file = File.createTempFile("temp",".yml")
