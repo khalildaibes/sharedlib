@@ -27,16 +27,21 @@ def body = [
    jsonrpc= "2.0",method= "getprojectparams", params= [project= "refash1np02",filter='/DB_TYPE/'],id= "getprojectparams"
 ]
 def post = new URL("http://cops.onbmc.com/cops/api.php").openConnection();
-post.setRequestMethod("POST")
-post.setDoOutput(true)
-post.setRequestProperty("Content-Type", "application/json")
-post.setRequestProperty("APIKEY", "24df72c4a77c436a8195e0949fa3868a")
-post.getOutputStream().write(body);
-post.connect();
-def postRC = post.getResponseCode();
-println(postRC);
-if (postRC.equals(200)) {
-    echo(post.getInputStream().getText());
+def url = "http://cops.onbmc.com/cops/api.php"
+def requestBody = [jsonrpc= "2.0",method= "getprojectparams", params= [project= "refash1np02",filter "/DB_TYPE/"],id= "getprojectparams"]
+
+def http = new HttpBuilder(url)
+
+http.request(POST, ContentType.JSON) { req ->
+  body = requestBody
+  response.success = { resp, json ->
+    println "Success: ${resp.statusLine}"
+    println "Response body: ${json}"
+  }
+  response.failure = { resp, json ->
+    println "Failure: ${resp.statusLine}"
+    println "Response body: ${json}"
+  }
 }
 echo result
 }
