@@ -1,5 +1,5 @@
 def get_data_centers(jobname){
-  def configVal = readYaml file: "./datacenters.yml"
+  def configVal = readYaml file: "/vars/datacenters.yml"
   def datacenters= [""]
   try{
       datacenters = configVal['datacenters']["${jobname}"]["data-centers"]
