@@ -14,7 +14,7 @@ import static groovyx.net.http.Method.*
 def get_data_centers(jobname){
   def filecontent = libraryResource('datacenters.yml')
   File file = File.createTempFile("temp",".yml")
-  echo $?
+  echo file
   RESULT = file.write filecontent
   echo "${RESULT}"
   def configVal = readYaml  file: file.absolutePath
