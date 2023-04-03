@@ -1,7 +1,7 @@
 def get_data_centers(jobname){
   def filecontent = libraryResource('datacenters.yml')
   echo filecontent
-  File file = File.createTempFile("temp"${currentBuild.number}",".yml")
+  File file = File.createTempFile("temp_${currentBuild.number}",".yml")
   file.write filecontent
   def configVal = readYaml  file: file.absolutePath
   try{
