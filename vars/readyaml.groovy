@@ -1,9 +1,3 @@
-@Grab(group='org.codehaus.groovy.modules.http-builder', module='http-builder', version='0.7')
-@Grab('org.codehaus.groovy.modules.http-builder:http-builder:0.7' )
-import groovyx.net.http.ContentType
-import groovyx.net.http.RESTClient
-import groovy.json.JsonBuilder
-
 def get_data_centers(jobname){
   def filecontent = libraryResource('datacenters.yml')
   File file = File.createTempFile("temp",".yml")
@@ -27,26 +21,24 @@ def get_db_type(customer){
 return json_result  
 }
 
-@NonCPS
-def cops_api1(authToken,customer) {
-def createUrl = new URL('http://cops.onbmc.com/cops/api.php')
 
-def map = [:]
-//create JSON
-def jsonBody = """{
-    "jsonrpc": "2.0",
-    "method": "getprojectparams",
-    "params": {
-        "project": "refash1np02",
-        "filter": "/DB_TYPE/"
-    },
-    "id": "getprojectparams"
-}"""
-def client = new RESTClient(createUrl)
-client.headers['Content-Type'] = 'application/json'
-client.headers['APIKEY'] = '24df72c4a77c436a8195e0949fa3868a'
-def resp = client.post(body : jsonBody, contentType: JSON )
-return resp.data 
+def cops_api1(authToken,customer) {
+def body = [
+   jsonrpc= "2.0",method= "getprojectparams", params= [project= "refash1np02",filter='/DB_TYPE/'],id= "getprojectparams"
+]
+def post = new URL("http://cops.onbmc.com/cops/api.php").openConnection();
+post.setRequestMethod("POST")
+post.setDoOutput(true)
+post.setRequestProperty("Content-Type", "application/json")
+post.setRequestProperty("APIKEY", "24df72c4a77c436a8195e0949fa3868a")
+post.getOutputStream().write(body.getBytes("UTF-8"));
+post.connect();
+def postRC = post.getResponseCode();
+println(postRC);
+if (postRC.equals(200)) {
+    echo(post.getInputStream().getText());
+}
+echo result
 }
 
 def cops_api(authToken,customer) {
