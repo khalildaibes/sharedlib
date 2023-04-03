@@ -56,6 +56,7 @@ def jsonBody = """{
 def client = new RESTClient(createUrl)
 client.headers['Content-Type'] = 'application/json'
 client.headers['APIKEY'] = '24df72c4a77c436a8195e0949fa3868a'
+client.headers['Cookie'] = 'cops=cr6i8nrmhk8slimnb6279gm5q1'
 def resp = client.post(body : jsonBody, contentType: JSON )
 echo resp.data 
 return resp.data 
